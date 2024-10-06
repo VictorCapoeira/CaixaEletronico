@@ -21,7 +21,7 @@ class Program{
     static void saque(caixa caixa){
         Console.WriteLine("Informe o valor do saque: ");
         double saque = double.Parse(Console.ReadLine());
-        if(saque < 500){
+        if(saque < 500 && saque < caixa.saldo){
             caixa.saldo = caixa.saldo - saque;
             Console.WriteLine("Saque realizado com sucesso!");
         }else
@@ -33,6 +33,19 @@ class Program{
         double deposito = double.Parse(Console.ReadLine());
         caixa.saldo = caixa.saldo + deposito;
         Console.WriteLine("Deposito realizado com sucesso!");
+    }
+
+    static void transferencia(caixa caixa, caixa caixa2){
+        Console.WriteLine("Informe o valor da transferencia: ");
+        double transferencia = double.Parse(Console.ReadLine());
+        if(transferencia < caixa.saldo){
+            caixa2.saldo = caixa2.saldo + transferencia;
+            caixa.saldo = caixa.saldo - transferencia;
+            Console.WriteLine("Transferencia realizado com sucesso!");
+        }else
+            Console.WriteLine("Transferencia invalida!");
+        
+        
     }
 
 }
