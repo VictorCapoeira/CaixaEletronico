@@ -35,6 +35,7 @@ class Program{
     }
 
     static void transferencia(caixa caixa, caixa caixa2){
+        Console.WriteLine($"Saldo inicial da conta 2 (apenas por referencia de estudo): {caixa2.saldo}");
         Console.WriteLine("Informe o valor da transferencia: ");
         double transferencia = double.Parse(Console.ReadLine());
         if(transferencia < caixa.saldo){
@@ -43,6 +44,7 @@ class Program{
             Console.WriteLine("Transferencia realizado com sucesso!");
         }else
             Console.WriteLine("Transferencia invalida!");
+        Console.WriteLine($"Saldo final da conta 2 (apenas por referencia de estudo): {caixa2.saldo}");
     }
 
     static void Main(){
