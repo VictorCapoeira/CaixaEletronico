@@ -20,7 +20,9 @@ class Program{
     }
     static void saque(caixa caixa){
         Console.WriteLine("Informe o valor do saque: ");
-        
+        double saque = double.Parse(Console.ReadLine());
+        caixa.saldo = caixa.saldo - saque;
+        Console.WriteLine("Saque realizado com sucesso!");
     }
 
 }
