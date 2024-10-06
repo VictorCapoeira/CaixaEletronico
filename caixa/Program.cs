@@ -21,8 +21,18 @@ class Program{
     static void saque(caixa caixa){
         Console.WriteLine("Informe o valor do saque: ");
         double saque = double.Parse(Console.ReadLine());
-        caixa.saldo = caixa.saldo - saque;
-        Console.WriteLine("Saque realizado com sucesso!");
+        if(saque < 500){
+            caixa.saldo = caixa.saldo - saque;
+            Console.WriteLine("Saque realizado com sucesso!");
+        }else
+            Console.WriteLine("Limite de saque invalido!");
+        
+    }
+    static void deposito(caixa caixa){
+        Console.WriteLine("Informe o valor do deposito: ");
+        double deposito = double.Parse(Console.ReadLine());
+        caixa.saldo = caixa.saldo + deposito;
+        Console.WriteLine("Deposito realizado com sucesso!");
     }
 
 }
