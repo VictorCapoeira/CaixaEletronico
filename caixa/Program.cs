@@ -11,8 +11,7 @@
 }
 
 class Program{
-    caixa conta1 = new caixa(1500, "Corrente", 1);
-    caixa conta2 = new caixa(1000, "Salario", 2);
+    
     static void vefConta(caixa caixa){
         Console.WriteLine($"ID da conta: {caixa.id}");
         Console.WriteLine($"Tipo de conta: {caixa.conta}");
@@ -44,9 +43,49 @@ class Program{
             Console.WriteLine("Transferencia realizado com sucesso!");
         }else
             Console.WriteLine("Transferencia invalida!");
-        
-        
     }
+
+    static void Main(){
+        caixa conta1 = new caixa(1500, "Corrente", 1);
+        caixa conta2 = new caixa(1000, "Salario", 2);
+        bool vef = true;
+        int contalogin = 1;
+        do
+        {
+            Console.WriteLine("Banco eletronico. Escolha a opção que deseja: \n 1 - verificar conta \n 2 - Realizar saque \n 3 - Realizar deposito \n 4 - Realizar transferencia \n 5 - Sair");
+            string esc = Console.ReadLine();
+            switch(esc){
+                case "1":
+                    if(contalogin == 1)
+                        vefConta(conta1);
+                    if(contalogin == 2)
+                        vefConta(conta2);
+                    break;
+                case "2": 
+                    if(contalogin == 1)
+                        saque(conta1);
+                    if(contalogin == 2)
+                        saque(conta2);
+                    break;      
+                case "3": 
+                    if(contalogin == 1)
+                        deposito(conta1);
+                    if(contalogin == 2)
+                        deposito(conta2);
+                    break;          
+                case "4": 
+                    if(contalogin == 1)
+                        transferencia(conta1, conta2);
+                    if(contalogin == 2)
+                        transferencia(conta2, conta1);
+                    break;             
+                case "5": 
+                    vef = false;
+                    break;                   
+            }
+        } while (vef);
+    }
+    
 
 }
 
