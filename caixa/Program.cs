@@ -1,12 +1,14 @@
 ﻿public class caixa{
     public double saldo {get; set;}
     public string conta {get; set;}
+    public string extrato {get; set;}
     public int id {get;}
 
     public caixa(double s, string c, int i){
         saldo = s;
         conta = c;
         id = id;
+        extrato = "";
     }
 }
 
@@ -23,6 +25,7 @@ class Program{
         if(saque < 500 && saque < caixa.saldo){
             caixa.saldo = caixa.saldo - saque;
             Console.WriteLine("Saque realizado com sucesso!");
+            caixa.extrato += $"- {saque} \n";
         }else
             Console.WriteLine("Limite de saque invalido!");
         
@@ -31,6 +34,7 @@ class Program{
         Console.WriteLine("Informe o valor do deposito: ");
         double deposito = double.Parse(Console.ReadLine());
         caixa.saldo = caixa.saldo + deposito;
+        caixa.extrato += $"+ {deposito} \n";
         Console.WriteLine("Deposito realizado com sucesso!");
     }
 
@@ -42,6 +46,7 @@ class Program{
             caixa2.saldo = caixa2.saldo + transferencia;
             caixa.saldo = caixa.saldo - transferencia;
             Console.WriteLine("Transferencia realizado com sucesso!");
+            caixa.extrato += $"- {transferencia} \n";
         }else
             Console.WriteLine("Transferencia invalida!");
         Console.WriteLine($"Saldo final da conta 2 (apenas por referencia de estudo): {caixa2.saldo}");
@@ -54,7 +59,7 @@ class Program{
         int contalogin = 1;
         do
         {
-            Console.WriteLine("Banco eletronico. Escolha a opção que deseja: \n 1 - verificar conta \n 2 - Realizar saque \n 3 - Realizar deposito \n 4 - Realizar transferencia \n 5 - Sair");
+            Console.WriteLine("Banco eletronico. Escolha a opção que deseja: \n 1 - verificar conta \n 2 - Realizar saque \n 3 - Realizar deposito \n 4 - Realizar transferencia \n 5 - Extrato \n 6 - Sair");
             string esc = Console.ReadLine();
             switch(esc){
                 case "1":
@@ -80,11 +85,20 @@ class Program{
                         transferencia(conta1, conta2);
                     if(contalogin == 2)
                         transferencia(conta2, conta1);
-                    break;             
+                    break;      
                 case "5": 
+                    Console.WriteLine("Extrato da conta: ");
+                    if(contalogin == 1)
+                        Console.WriteLine(conta1.extrato);
+                    if(contalogin == 2)
+                        Console.WriteLine(conta2.extrato);
+                    break;             
+                case "6": 
                     vef = false;
                     break;                   
             }
+            Console.ReadKey();
+            Console.Clear();
         } while (vef);
     }
     
